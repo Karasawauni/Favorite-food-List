@@ -1,13 +1,14 @@
 // Vercelのサーバーレス関数
 export default async function handler(req, res) {
     const { url } = req.query;
-
+    console.log(url);
     if (!url) {
         return res.status(400).json({ error: 'URLが必要です。' });
     }
 
     // ここでGoogle Places APIのキーを環境変数から取得
     const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+    console.log(apiKey);
 
     if (!apiKey) {
         return res.status(500).json({ error: 'APIキーが設定されていません。' });
@@ -16,10 +17,11 @@ export default async function handler(req, res) {
     try {
         // Google Places APIのURL
         const googlePlaceUrl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${url}&key=${apiKey}`;
-
+        console.log(googlePlaceUrl);
         // Google Places APIにリクエスト
         const response = await fetch(googlePlaceUrl);
         const data = await response.json();
+        console.log(response+'---'+data);
 
         // 必要な情報を抽出
         if (data.status === 'OK') {
