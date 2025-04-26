@@ -14,12 +14,18 @@
 <body>
     <div class="iphone">
         <h1>登録画面</h1>
-        <div class="form-container">
-            <input type="text" placeholder="入力してください">
-            <button type="button">送信</button>
-        </div>
         <div class="content">
-            <!-- コンテンツエリア（今は空） -->
+            <form id="url-form">
+                <label for="google-url">GoogleマップのURLを入力してください：</label>
+                <input type="text" id="google-url" placeholder="Google Maps URL" required />
+                <button type="submit">情報を取得</button>
+            </form>
+            <div id="place-info" class="place-info">
+                <h2>お店の情報</h2>
+                <div id="place-name"></div>
+                <div id="place-address"></div>
+                <img id="place-image" src="" alt="お店の画像" />
+            </div>
         </div>
         <div class="footer">
             <div class="button-block">

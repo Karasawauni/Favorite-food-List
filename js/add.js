@@ -1,19 +1,19 @@
-/*APIキー
-AIzaSyBQT9VcrV5MDd1gyV40UfmFQRpoJ1gUoK8
 
 
-export default async function handler(req, res) {
-    const { query } = req.query;
+document.getElementById('url-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const url = document.getElementById('google-url').value;
 
-    const apiKey = process.env.GOOGLE_PLACES_API_KEY; // 環境変数から取得
-
-    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(query)}&key=${apiKey}`;
-
-    const response = await fetch(url);
+    // サーバーサイドにリクエストを送る
+    const response = await fetch(`/api/fetchPlace?url=${encodeURIComponent(url)}`);
     const data = await response.json();
 
-    res.status(200).json(data);
-}
-
-*/
-
+    if (data.error) {
+        alert('エラーが発生しました: ' + data.error);
+    } else {
+        // 受け取ったデータを画面に表示
+        document.getElementById('place-name').innerText = '名前: ' + data.name;
+        document.getElementById('place-address').innerText = '住所: ' + data.address;
+        document.getElementById('place-image').src = data.image_url || '';
+    }
+});
