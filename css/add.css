@@ -1,17 +1,12 @@
-<<<<<<< HEAD
 .form-container {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* フォームとボタンの間の隙間 */
-=======
-.form-container {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* フォームとボタンの間の隙間 */
-  }
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* フォームとボタンの間の隙間 */
+}
 
-  #map {
-    height: 40vh;
-    width: 100%;
->>>>>>> master
-  }
+#map {
+  height: 40vh;
+  width: 100%;
+
+}
