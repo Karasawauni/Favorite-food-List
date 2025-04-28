@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -39,4 +40,50 @@
     <script src="script.js"></script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iPhone16 Mock</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/add.css">
+    <script src="js/_global.js"></script>
+    <script src="js/add.js"></script>
+
+</head>
+
+<body>
+    <div class="iphone">
+        <h1>登録画面</h1>
+        <div class="content">
+            <input id="search-input" type="text" placeholder="場所を検索">
+            <div id="map"></div>
+            <form id="url-form">
+                <label for="google-url">GoogleマップのURLを入力してください：</label>
+                <input type="text" id="google-url" placeholder="Google Maps URL" required />
+                <button type="submit">情報を取得</button>
+            </form>
+            <div id="place-info" class="place-info">
+                <h2>お店の情報</h2>
+                <div id="place-name"></div>
+                <div id="place-address"></div>
+                <img id="place-image" src="" alt="お店の画像" />
+            </div>
+        </div>
+        <div class="footer">
+            <div class="button-block">
+                <img src="image/home.svg" class="icon-home" alt="ホームボタン">
+                <img src="image/add.svg" class="icon-add" alt="登録ボタン">
+                <img src="image/memu.svg" class="icon-menu" alt="メニューボタン">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkpNe9zPMdVpK6PKbpFyixX3H0wBPmosA&callback=initMap&libraries=places" async defer></script>
+
+
+>>>>>>> master
 </html>
