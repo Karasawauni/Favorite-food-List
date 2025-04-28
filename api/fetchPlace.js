@@ -1,46 +1,29 @@
-/*Vercelのサーバーレス関数
+import fetch from 'node-fetch';
+
 export default async function handler(req, res) {
-    const { url } = req.query;
-    console.log(url);
-    if (!url) {
-        return res.status(400).json({ error: 'URLが必要です。' });
+    const { placeId } = req.query;
+
+    if (!placeId) {
+        return res.status(400).json({ error: 'placeId is required' });
     }
 
-    // ここでGoogle Places APIのキーを環境変数から取得
-    const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-    console.log(apiKey);
-
-    if (!apiKey) {
-        return res.status(500).json({ error: 'APIキーが設定されていません。' });
-    }
+    const apiKey = process.env.GOOGLE_PLACES_API_KEY; // Vercelの環境変数からAPIキーを取得
 
     try {
         // Google Places APIのURL
-        const googlePlaceUrl = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${url}&key=${apiKey}`;
-        console.log(googlePlaceUrl);
-        // Google Places APIにリクエスト
-        const response = await fetch(googlePlaceUrl);
-        const data = await response.json();
-        console.log(response+'---'+data);
+        const url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${apiKey}`;
 
-        // 必要な情報を抽出
-        if (data.status === 'OK') {
-            const place = {
-                name: data.result.name,
-                address: data.result.formatted_address,
-                image_url: data.result.photos ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${data.result.photos[0].photo_reference}&key=${apiKey}` : ''
-            };
-            return res.status(200).json(place);
-        } else {
-            return res.status(400).json({ error: 'Google Places APIからのデータ取得に失敗しました。' });
+        // APIリクエスト
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status !== 'OK') {
+            return res.status(400).json({ error: 'Failed to fetch place details' });
         }
+
+        // 取得したデータを返す
+        return res.status(200).json(data.result);
     } catch (error) {
-        return res.status(500).json({ error: 'サーバーエラーが発生しました。' });
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
-    */
-
-export default function handler(req, res) {
-    const apiKey = process.env.GOOGLE_MAPS_API_KEY; // Vercelの環境変数から取得
-    res.status(200).json({ apiKey });
-  }
